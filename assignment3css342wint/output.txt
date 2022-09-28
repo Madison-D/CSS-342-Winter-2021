@@ -1,0 +1,24 @@
+C:\Users\17028\source\repos\ass3>ssh mdienh@csslab3.uwb.edu
+mdienh@csslab3.uwb.edu's password:
+[mdienh@csslab3 ~]$ ls
+creature.cpp  library.cpp  main.cpp  maze.h            timespan.cpp
+creature.h    library.h    maze.cpp  simplecompile.sh  timespan.h
+[mdienh@csslab3 ~]$ ./simplecompile.sh
+Sun Feb  7 22:59:32 PST 2021
+*** compiling with clang++ to create an executable called myprogram
+clang version 3.4.2 (tags/RELEASE_34/dot2-final)
+Target: x86_64-redhat-linux-gnu
+Thread model: posix
+error: invalid value 'c++14' in '-std=c++14'
+error: invalid value 'c++14' in '-std=c++14'
+error: invalid value 'c++14' in '-std=c++14'
+error: invalid value 'c++14' in '-std=c++14'
+error: invalid value 'c++14' in '-std=c++14'
+*** running clang-tidy using options from .clang-tidy
+./simplecompile.sh: line 25: clang-tidy: command not found
+./simplecompile.sh: line 26: clang-tidy: command not found
+*** running myprogram
+./simplecompile.sh: line 29: ./myprogram: No such file or directory
+*** cleaning up, deleting myprogram
+rm: cannot remove ‘myprogram’: No such file or directory
+Sun Feb  7 22:59:32 PST 2021

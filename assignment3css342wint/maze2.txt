@@ -1,0 +1,7 @@
+20 5
+0  8
+xxxxxxx xxxxxxxxxxxx
+x x          xx xx x
+x xxxxxxxxxx xx    x
+xxxxxxxxxxxxxxxxxx x
+xxxxxxxxxxxxxxxxxxxx
