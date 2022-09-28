@@ -1,120 +1,87 @@
-
-
+// This is the SkipList header file, 
+// it holds the SNode class, and the SkipList class
+// that work together in the skiplist cpp file
+// both files work together to create
+// a Skip List data structure to store integers 
+// at multiple levels
 #ifndef ASS4_SKIPLIST_H
 #define ASS4_SKIPLIST_H
 
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
 class SkipList;
 
 class SNode {
-		friend class SkipList;
-		friend ostream& operator<<(ostream& out, const SkipList& skip);
+	friend class SkipList;
+	friend ostream& operator<<(ostream& Out, const SkipList& SkipL);
 
 public:
-	// SNode stores int as data
+	//snode class constructor
 	explicit SNode(int value);
 
-	// data for SNode
-	int value{ 0 };
+	//data variable
+	int value;
 
-	// link to next SNode
+	//links to the next SNode
 	SNode* forward;
 
-	// link to prev SNode
+	//links to the previous SNode
 	SNode* backward;
-
-	// link to up one level
+	
+	//links to the upward SNode
 	SNode* up;
 
-	// link to down one level
+	//links to the downward SNode
 	SNode* down;
-
-	// how many forward/backward pointers it has
-	//int height() const;
-
-	// increase the number of forward/backward pointers it has
-	//void increaseHeight();
 };
 
 class SkipList {
-	friend ostream& operator<<(ostream& out, const SkipList& skip);
+	//prints out / displays
+	friend ostream& operator<<(ostream& Out, const SkipList& SkipL);
 
 public:
-	
-	explicit SkipList(int maxLevel = 1, int probability = 0);
+	//construstor for the SkipList class
+	explicit SkipList(int maxLevel, int probability); 
 
-	// destructor
+	//destructor
 	virtual ~SkipList();
 
-	// copy not allowed
-	SkipList(const SkipList& other) = delete;
-
-	// move not allowed
-	SkipList(SkipList&& other) = delete;
-
-	// assignment not allowed
-	SkipList& operator=(const SkipList& other) = delete;
-
-	// move assignment not allowed
-	SkipList& operator=(SkipList&& other) = delete;
-
-	// return true if successfully added, no duplicates
+	//adds a value
 	bool add(int value);
 
-	// return true if successfully added, no duplicates
+	//adds values
 	bool add(const vector<int>& values);
 
-	// return true if successfully removed
+	//removes values
 	bool remove(int value);
 
-	// return true if found in
+	//checks if value is found in skiplist
 	bool contains(int value) const;
 
 private:
-	int maxLevel;
+	//probability variable (random value between 0 to 100%)
 	int probability;
 
-	// head of linked levels
-	//SNode* head;
+	//max number of levels
+	int maxLevel;
 
-	// tail of linked levels
-	//SNode* tail;
+	//head of linked levels
+	SNode** FrontGuards;
 
-	// array of Depth SNode* objects as FrontGuards linking levels
-	SNode** frontGuards;
+	//tail of linked levels
+	SNode** RearGuards;
 
-	// array of Depth SNode* objects as RearGuards linking levels
-	SNode** rearGuards;
-
-	//bool shouldInsertAtHigher() const;
-	// 50% it returns true or false
+	//returns random, for a chance of higher level
 	bool alsoHigher() const;
 
-	// Adds a new node before the current node
-	void addBefore(SNode* newNode, SNode* nextNode);
+	//places before given NextNode
+	void addBefore(SNode* NewNode, SNode* NextNode); 
 
-	// Will add a node to given level and increase level by one.
-	// Returns false if is already in list.
-	bool findSpotAndAdd(SNode* newNode, int& level);
-
-	//FROM GITHUB, NOT IN USE
-	/*// return true p% of time,
-  // for p = 50, each node has a 50% chance of being at higher level
-  bool shouldInsertAtHigher() const;
-
-  // connect 2 nodes in a line
-  static void connect2AtLevel(SNode *a, SNode *b, int level);
-
-  // connect 3 nodes in a line
-  static void connect3AtLevel(SNode *a, SNode *b, SNode *c, int level);
-
-  SNode *containsSNode(int data) const;
-
-  vector<SNode *> getBeforeNodes(int data) const;*/
+	//given a value, returns a pointer, returns nullptr if node does not exist
+	SNode* findNode(int value) const;
 };
 
-
-#endif //ASS4_SKIPLIST_H
+#endif // ASS4_SKIPLIST_H
